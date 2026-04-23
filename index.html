@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sean Salayko | Internship Portfolio</title>
+  <style>
+    :root {
+      --red: #c8102e;
+      --red-dark: #9f0f26;
+      --black: #111111;
+      --charcoal: #1c1c1c;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-500: #666666;
+      --shadow: 0 12px 30px rgba(0,0,0,.12);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: linear-gradient(180deg, #fafafa 0%, #f1f1f1 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; border-radius: 14px; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(17,17,17,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+      color: white;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: .4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.9);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--black), #2a2a2a 60%, var(--red-dark));
+      color: white;
+      padding: 84px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,.86);
+      margin: 0 0 24px;
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.06);
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.1;
+    }
+
+    .section-intro {
+      margin: 0 0 28px;
+      color: var(--gray-500);
+      max-width: 760px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--red);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 18px;
+      padding-left: 16px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 7px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .project-content {
+      padding: 22px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      color: var(--red);
+      background: rgba(200,16,46,.08);
+      border-radius: 999px;
+      padding: 7px 10px;
+      margin-bottom: 12px;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tool-pill {
+      font-size: 12px;
+      padding: 7px 10px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 999px;
+    }
+
+    details {
+      border-top: 1px solid var(--gray-200);
+      padding-top: 14px;
+      margin-top: 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .gallery figure {
+      margin: 0;
+      background: var(--gray-100);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+
+    .gallery figcaption {
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .quote-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .quote {
+      padding: 18px;
+      border-left: 4px solid var(--red);
+      background: #fff;
+      border-radius: 0 14px 14px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .lessons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .lesson {
+      background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+      border: 1px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      min-height: 160px;
+    }
+
+    .lesson-number {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, var(--black), #262626);
+      color: white;
+    }
+
+    .footer {
+      padding: 28px 0 44px;
+      color: var(--gray-500);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-2,
+      .project-grid,
+      .split,
+      .lessons {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .gallery { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .hero { padding-top: 58px; }
+      .section { padding: 54px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container nav">
+      <div class="brand">Sean Salayko</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#workplace">Workplace</a>
+        <a href="#development">Development</a>
+        <a href="#reflection">Reflection</a>
+        <a href="#lessons">Lessons</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Packaging Engineering Internship Portfolio</div>
+        <h1>Sean Salayko</h1>
+        <p>
+          Packaging Engineering Intern on the Power Tools Accessories team at Milwaukee Tool.
+          This portfolio highlights internship projects, workplace experience, professional growth,
+          and key lessons learned through hands-on packaging development.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/Sean-salayko" target="_blank">View LinkedIn</a>
+          <a class="btn btn-secondary" href="#projects">See Projects</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Internship Snapshot</h3>
+        <p>January 12 – June 12</p>
+        <div class="stats">
+          <div class="stat">
+            <strong>4</strong>
+            Featured projects
+          </div>
+          <div class="stat">
+            <strong>3+</strong>
+            Interactive sections
+          </div>
+          <div class="stat">
+            <strong>5</strong>
+            Core lessons learned
+          </div>
+          <div class="stat">
+            <strong>1</strong>
+            Clear career direction
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">Professional Introduction</h2>
+        <p class="section-intro">
+          A focused overview of Sean's role, internship timeline, and the scope of work completed at Milwaukee Tool.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Introduction</h3>
+            <p>
+              My name is Sean Salayko, and I am a Packaging Engineering Intern at Milwaukee Tool,
+              working on the Power Tools Accessories team. Throughout my internship, I supported a wide range
+              of packaging projects with a focus on design execution, cross-functional collaboration, and
+              data-driven analysis.
+            </p>
+            <p>
+              In this role, I contributed to packaging design efforts, assisted with testing and documentation,
+              and supported various project-related data mining and analysis tasks used to inform packaging decisions.
+              I regularly collaborated with other packaging engineers, helping support active projects while also taking
+              opportunities to lead select tasks and projects when appropriate.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Internship Timeline</h3>
+            <div class="timeline">
+              <div class="timeline-item"><strong>January:</strong> Onboarding, tool training, and introduction to team workflows</div>
+              <div class="timeline-item"><strong>February–April:</strong> Packaging design support, testing involvement, documentation, and data analysis</div>
+              <div class="timeline-item"><strong>May:</strong> Increased ownership of packaging tasks and cross-functional collaboration</div>
+              <div class="timeline-item"><strong>June:</strong> Project wrap-up, reflections, and portfolio preparation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">Project Highlights</h2>
+        <p class="section-intro">
+          These projects represent packaging concept development, prototyping, supplier collaboration,
+          structural design, and time-sensitive execution completed during the internship.
+        </p>
+
+        <div class="project-grid">
+          <article class="card project-card">
+            <div class="project-content">
+              <div class="badge">Project 1</div>
+              <h3>Interactive Bit Holder</h3>
+              <p>
+                Developed an interactive clamshell packaging concept with a hands-on feature to improve product
+                engagement and presentation, taking the concept from CAD to a physical prototype.
+              </p>
+              <ul>
+                <li>Designed the 3D clamshell package and interactive insert using SolidWorks and ArtiosCAD</li>
+                <li>Created insert card geometry to fit seamlessly within the clamshell</li>
+                <li>Prepared CAD files for physical production and prototyping</li>
+                <li>Manufactured the prototype using the Zünd and thermoforming processes</li>
+                <li>Collaborated with the project team to review fit, functionality, and concept execution</li>
+              </ul>
+              <div class="tools">
+                <span class="tool-pill">SolidWorks</span>
+                <span class="tool-pill">ArtiosCAD</span>
+                <span class="tool-pill">Zünd Cutting System</span>
+                <span class="tool-pill">Thermoforming</span>
+                <span class="tool-pill">Physical Prototyping</span>
+              </div>
+              <details>
+                <summary>Image placeholders for before / after pictures</summary>
+                <div class="gallery">
+                  <figure>
+                    <img src="images/project1-before.jpg" alt="Project 1 before image placeholder" />
+                    <figcaption>Add before picture here</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="images/project1-after.jpg" alt="Project 1 after image placeholder" />
+                    <figcaption>Add after picture here</figcaption>
+                  </figure>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-content">
+              <div class="badge">Project 2</div>
+              <h3>Trimmer Line</h3>
+              <p>
+                Identified a more cost-effective and sustainable packaging solution for Milwaukee Tool's trimmer line
+                assortment while clearly differentiating new SKUs and maintaining strong shelf appeal.
+              </p>
+              <ul>
+                <li>Developed multiple packaging concepts focused on cost reduction and sustainability</li>
+                <li>Explored alternative materials, structures, and formats</li>
+                <li>Worked with Product Marketing on differentiation and visual appeal</li>
+                <li>Created physical prototypes to compare concepts</li>
+                <li>Compiled and distributed a prototype comparison document for supplier quotes</li>
+              </ul>
+              <div class="tools">
+                <span class="tool-pill">Concept Development</span>
+                <span class="tool-pill">Physical Prototyping</span>
+                <span class="tool-pill">Cost Evaluation</span>
+                <span class="tool-pill">Sustainability Review</span>
+                <span class="tool-pill">Supplier Communication</span>
+              </div>
+              <div class="gallery">
+                <figure>
+                  <img src="images/trimmer-line-1.jpg" alt="Trimmer line concept 1" />
+                  <figcaption>Prototype option 1</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/trimmer-line-2.jpg" alt="Trimmer line concept 2" />
+                  <figcaption>Prototype option 2</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/trimmer-line-3.jpg" alt="Trimmer line concept 3" />
+                  <figcaption>Prototype option 3</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-content">
+              <div class="badge">Project 3</div>
+              <h3>15 PC Bit Set</h3>
+              <p>
+                Developed a new packaging solution for a 15-piece bit set using an existing footprint while improving
+                product presentation and aligning with Brand Marketing expectations.
+              </p>
+              <ul>
+                <li>Evaluated trap blister, single-face blister, and clamshell formats</li>
+                <li>Created concepts for all three structures within the existing footprint</li>
+                <li>Led concept development that resulted in selecting the trap blister</li>
+                <li>Built a physical prototype to present to Brand Marketing</li>
+                <li>Finalized the dieline and sent it to PRC for sample development</li>
+              </ul>
+              <div class="tools">
+                <span class="tool-pill">Blister Format Evaluation</span>
+                <span class="tool-pill">Physical Prototyping</span>
+                <span class="tool-pill">Dieline Creation</span>
+                <span class="tool-pill">Brand Marketing Collaboration</span>
+              </div>
+              <div class="gallery">
+                <figure>
+                  <img src="images/bitset-drawing.jpg" alt="15 piece bit set drawing" />
+                  <figcaption>Dimensioned concept drawing</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/bitset-cad.jpg" alt="15 piece bit set CAD" />
+                  <figcaption>CAD concept model</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/bitset-package.jpg" alt="15 piece bit set package prototype" />
+                  <figcaption>Trap blister prototype</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-content">
+              <div class="badge">Project 4</div>
+              <h3>Foam Insert</h3>
+              <p>
+                Designed and produced a custom foam insert for a Packout case to securely hold tools for shipment,
+                balancing speed, protection, and organization within a three-day timeline.
+              </p>
+              <ul>
+                <li>Worked with the Concepting team to align on tool layout and protection needs</li>
+                <li>Converted tool and case files into 2D CAD for foam layout</li>
+                <li>Designed custom foam cut geometry for accurate fit</li>
+                <li>Cut and fabricated all inserts within a three-day turnaround</li>
+                <li>Verified tool fit and shipment readiness in the final Packout configuration</li>
+              </ul>
+              <div class="tools">
+                <span class="tool-pill">2D CAD</span>
+                <span class="tool-pill">Foam Insert Design</span>
+                <span class="tool-pill">Rapid Fabrication</span>
+                <span class="tool-pill">Problem Solving</span>
+                <span class="tool-pill">Time-Sensitive Execution</span>
+              </div>
+              <div class="gallery">
+                <figure>
+                  <img src="images/foam-layout.jpg" alt="Foam insert CAD layout" />
+                  <figcaption>2D CAD foam layout</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/foam-packout.jpg" alt="Foam insert in Packout case" />
+                  <figcaption>Final insert installed in Packout</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workplace">
+      <div class="container split">
+        <div class="card">
+          <h2 class="section-title">Workplace Experience</h2>
+          <p>
+            My day-to-day work during my internship varied a lot, which made the experience really unique.
+            Some days were meetings-heavy, where I was working with my team and cross-functional groups to align on projects.
+            Other days I spent most of my time in the lab concepting, designing, and building prototypes. There were also days focused
+            on project documentation, organizing information, and reviewing data to support ongoing packaging work.
+          </p>
+          <p>
+            I had a good balance between working independently and collaborating with my team. Having both allowed me to take ownership
+            of tasks while still learning from others and getting feedback along the way. Because priorities could change day-to-day,
+            the environment was fast-paced and required me to stay flexible and organized.
+          </p>
+          <p>
+            What made this experience stand out was that no two days were ever the same. The variety of work kept things interesting and
+            gave me exposure to many parts of the packaging development process, helping me better understand how everything comes together
+            in a real engineering environment.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Workplace Visuals</h3>
+          <div class="gallery" style="grid-template-columns:1fr;">
+            <figure>
+              <img src="images/work-calendar.jpg" alt="Annotated internship work calendar" />
+              <figcaption>Weekly schedule / calendar snapshot</figcaption>
+            </figure>
+            <figure>
+              <img src="images/desk-photo.jpg" alt="Sean's desk at Milwaukee Tool" />
+              <figcaption>Add desk photo here</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="development">
+      <div class="container split">
+        <div class="card">
+          <h2 class="section-title">Professional Development</h2>
+          <p>
+            During my internship, I visited multiple packaging suppliers, including Flexographics and Quad,
+            to gain insight into packaging from a manufacturing perspective. At Flexographics, I learned more about label packaging processes,
+            while my visit to Quad focused on paperboard packaging production. These experiences helped me better understand how packaging designs
+            are manufactured and how design decisions impact production and cost.
+          </p>
+          <div class="tools">
+            <span class="tool-pill">Supplier Visits</span>
+            <span class="tool-pill">Manufacturing Insight</span>
+            <span class="tool-pill">Production Awareness</span>
+            <span class="tool-pill">Cost Impact Understanding</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Site Visit Gallery</h3>
+          <div class="gallery" style="grid-template-columns:1fr;">
+            <figure>
+              <img src="images/flexographics.jpg" alt="Flexographics site visit" />
+              <figcaption>Flexographics visit</figcaption>
+            </figure>
+            <figure>
+              <img src="images/quad.jpg" alt="Quad site visit" />
+              <figcaption>Quad visit</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="container">
+        <h2 class="section-title">Industry Insights & Career Reflection</h2>
+        <p class="section-intro">
+          This section captures how the internship changed Sean's view of packaging engineering and the skills he developed along the way.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <p>
+              Throughout my time at Milwaukee Tool, my view of the packaging industry changed significantly. I learned that packaging engineers
+              take full ownership of their projects and responsibilities, from early concepts all the way through execution. The role requires balancing
+              multiple priorities at once, while still being accountable for decisions and outcomes.
+            </p>
+            <p>
+              The internship also showed me how fast-paced the packaging environment can be. Each project moved quickly, often requiring flexibility and
+              strong communication to keep things on track. Through this experience, I grew both technically and professionally.
+            </p>
+            <p>
+              On the technical side, I gained experience using software tools such as ArtiosCAD, NX, and SolidWorks, as well as hands-on exposure to lab equipment
+              including the Zünd cutter and various testing machines. Professionally, I developed important skills such as organization, time management, prioritization,
+              and clear communication, all of which played a big role in handling a changing workload.
+            </p>
+            <p>
+              Overall, this internship helped confirm my interest in packaging engineering and showed me what it looks like to work in a real, fast-moving product development environment.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Strengths</h3>
+            <ul>
+              <li>Strong communication and personable nature</li>
+              <li>Curiosity and a strong desire to learn</li>
+              <li>Willingness to ask questions and seek feedback</li>
+            </ul>
+
+            <h3>Areas for Growth</h3>
+            <ul>
+              <li>Technical software experience at the start of the internship</li>
+              <li>Familiarity with packaging-specific tools and lab equipment</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 22px;">
+          <h3>Mentor Advice & Takeaways</h3>
+          <div class="quote-list">
+            <div class="quote">“Don't be afraid to ask questions.”</div>
+            <div class="quote">“Be a sponge and absorb as much as you can.”</div>
+            <div class="quote">“Become close to your coworkers on a personal level, not just a work level.”</div>
+            <div class="quote">“Experience everything your internship and city have to offer.”</div>
+            <div class="quote">“Enjoy every second — it goes by fast.”</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lessons">
+      <div class="container">
+        <h2 class="section-title">5 Lessons Learned</h2>
+        <p class="section-intro">
+          Instead of a “what I'd do differently” section, this site highlights the five biggest takeaways from the internship experience.
+        </p>
+
+        <div class="lessons">
+          <div class="lesson">
+            <div class="lesson-number">1</div>
+            <strong>Don't be afraid to ask questions</strong>
+          </div>
+          <div class="lesson">
+            <div class="lesson-number">2</div>
+            <strong>Take full ownership of your work</strong>
+          </div>
+          <div class="lesson">
+            <div class="lesson-number">3</div>
+            <strong>Stay organized and manage priorities in a fast-paced environment</strong>
+          </div>
+          <div class="lesson">
+            <div class="lesson-number">4</div>
+            <strong>Seeing the full process behind design decisions</strong>
+          </div>
+          <div class="lesson">
+            <div class="lesson-number">5</div>
+            <strong>Hands-on experience is the best way to learn</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="card contact-card">
+          <h2 class="section-title">Connect</h2>
+          <p>
+            This portfolio was created to showcase internship growth, technical contribution, and professional development in packaging engineering.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/Sean-salayko" target="_blank">LinkedIn</a>
+            <a class="btn btn-secondary" href="mailto:your-email@example.com">Email Sean</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Sean Salayko | Packaging Engineering Internship Portfolio</div>
+  </footer>
+</body>
+</html>
